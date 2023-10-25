@@ -84,5 +84,3 @@ while len(coords_list) < 50:
     new_coord = (rng.randint(0, 99), rng.randint(0, 99))
     if not check_overlap(coords_list, new_coord):
         coords_list.append(new_coord)
-
-
