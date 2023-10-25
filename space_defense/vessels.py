@@ -115,15 +115,12 @@ support_coords = [s.coordinates for s in ships[25:50]]
 
 
 # Calculate a distance matrix between offensive and defensive crafts
-dist_matrix = distance.cdist(
-    offensive_coords, support_coords, 'euclidean'
-)
+dist_matrix = distance.cdist(offensive_coords, support_coords, "euclidean")
 
 
 # Find the closest support ship for each offensive ship
 for i in range(len(dist_matrix)):
     closest_index = np.argmin(dist_matrix[i])
-    print(f"Closest point in offensive_coords for {offensive_coords[i]} is {support_coords[closest_index]}")
-
-
-
+    print(
+        f"Closest point in offensive_coords for {offensive_coords[i]} is {support_coords[closest_index]}"
+    )
