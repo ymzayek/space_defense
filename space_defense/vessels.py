@@ -126,3 +126,8 @@ for i in range(len(dist_matrix)):
             support_coords[closest_index]
         }"
     )
+
+
+# TODO
+# Move support ships next to their closest offensive ship by calling
+# move method and setting new coordinates.
