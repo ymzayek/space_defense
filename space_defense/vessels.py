@@ -67,7 +67,7 @@ class CommandShip(BattleshipCraft):
         super().__init__(coords)
 
 
-rng = np.random.Random(0)
+rng = np.random.RandomState(0)
 
 
 def check_overlap(coords_list, new_coord):
@@ -84,3 +84,28 @@ while len(coords_list) < 50:
     new_coord = (rng.randint(0, 99), rng.randint(0, 99))
     if not check_overlap(coords_list, new_coord):
         coords_list.append(new_coord)
+
+
+# We only have one command ship and then add 24 offensive crafts
+crafts_list = [CommandShip]
+for i in range(8):
+    crafts_list.append(CruiserCraft)
+    crafts_list.append(DestroyerCraft)
+    crafts_list.append(BattleshipCraft)
+# Then add 25 support crafts
+for i in range(8):
+    crafts_list.append(RefuelingCraft)
+    crafts_list.append(MechanicalAssistanceCraft)
+    crafts_list.append(CargoCraft)
+crafts_list.append(CargoCraft)
+
+
+# Assign random coordsinates
+ships = []
+for coords, vessel in zip(coords_list, crafts_list):
+    if issubclass(vessel, SupportCraft):
+        ships.append(vessel((coords), 1))
+    else:
+        ships.append(vessel((coords)))
+
+print(ships[0].coordinates)
