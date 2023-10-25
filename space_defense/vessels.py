@@ -1,5 +1,6 @@
 """Module for vessels of the space fleet."""
 import numpy as np
+from scipy.spatial import distance
 
 
 # Base class for all types of vessels
@@ -108,4 +109,21 @@ for coords, vessel in zip(coords_list, crafts_list):
     else:
         ships.append(vessel((coords)))
 
-print(ships[0].coordinates)
+
+offensive_coords = [s.coordinates for s in ships[:25]]
+support_coords = [s.coordinates for s in ships[25:50]]
+
+
+# Calculate a distance matrix between offensive and defensive crafts
+dist_matrix = distance.cdist(
+    offensive_coords, support_coords, 'euclidean'
+)
+
+
+# Find the closest support ship for each offensive ship
+for i in range(len(dist_matrix)):
+    closest_index = np.argmin(dist_matrix[i])
+    print(f"Closest point in offensive_coords for {offensive_coords[i]} is {support_coords[closest_index]}")
+
+
+
