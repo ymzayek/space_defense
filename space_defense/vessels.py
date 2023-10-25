@@ -122,5 +122,7 @@ dist_matrix = distance.cdist(offensive_coords, support_coords, "euclidean")
 for i in range(len(dist_matrix)):
     closest_index = np.argmin(dist_matrix[i])
     print(
-        f"Closest point in offensive_coords for {offensive_coords[i]} is {support_coords[closest_index]}"
+        f"Closest point in offensive_coords for {offensive_coords[i]} is {
+            support_coords[closest_index]
+        }"
     )
